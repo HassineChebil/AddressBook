@@ -54,9 +54,6 @@ class RegistrationController extends BaseController
             $url = $this->container->get('router')->generate($route);
             $response = new RedirectResponse('/home');
 
-            if ($authUser) {
-                $this->authenticateUser($user, $response);
-            }
 
             return $response;
         }
