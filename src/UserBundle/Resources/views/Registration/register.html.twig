@@ -1,0 +1,92 @@
+{% extends 'UserBundle::base.html.twig' %}
+
+{% block title %}Create new entry{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <form class="form-horizontal" action="" method="POST">
+
+                <fieldset>
+                    <div id="legend">
+                        <legend class="">Register</legend>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            {{ form_row(form.name) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="surname">Surname</label>
+                        <div class="controls">
+                            {{ form_row(form.surname) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            {{ form_row(form.username) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="email">E-mail</label>
+                        <div class="controls">
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="phone">Phone</label>
+                        <div class="controls">
+                            {{ form_row(form.phone) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="address">Address</label>
+                        <div class="controls">
+                            {{ form_row(form.address) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="website">WebSite</label>
+                        <div class="controls">
+                            {{ form_row(form.website) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            {{ form_row(form.plainPassword) }}
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {{ form_row(form.parent_id, {'value' : app.user.id}) }}
+                        {% else %}
+                            {{ form_row(form.parent_id, {'value' : 0 }) }}
+                        {% endif %}
+
+                        {{ form_rest(form) }}
+                        <!-- Button -->
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

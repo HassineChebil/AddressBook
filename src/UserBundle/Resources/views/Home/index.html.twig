@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<h1>Welcome to Your Address Book</h1>
+    <a href="{{ path('fos_user_security_logout') }}">
+        Logout
+    </a>
+<table class="table table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+    {%  for user in users %}
+
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.surname }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.website }}</td>
+            <td><a href="{{ path('fos_user_profile_edit',{'id' : user.id}) }}"><span class="glyphicon-pencil"></span></a></td>
+            <td><a href="{{ path('delete',{'id' : user.id}) }}"><span class="glyphicon-remove"></span></a></td>
+        </tr>
+        {% else %}
+        <tr class="text-center">
+            No user are registered in your address book
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
